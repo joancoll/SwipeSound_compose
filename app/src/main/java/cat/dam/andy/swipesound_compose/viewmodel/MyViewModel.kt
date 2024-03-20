@@ -22,6 +22,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 
     val isMusicPlaying = mutableStateOf(true)
     var backgroundColor = mutableStateOf(Color.Cyan)
+    var swipeDirection = mutableStateOf("")
 
     private val sounds = mapOf(
         Sound.SWIPE_LEFT to MediaPlayer.create(application, R.raw.left),

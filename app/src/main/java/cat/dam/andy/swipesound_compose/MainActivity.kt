@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.viewmodel.compose.viewModel
 import cat.dam.andy.swipesound_compose.ui.theme.SwipeSound_composeTheme
 import cat.dam.andy.swipesound_compose.viewmodel.MyViewModel
@@ -90,10 +91,12 @@ fun SwipeDetector(myViewModel: MyViewModel = viewModel()) {
                                         // Swipe Right
                                         myViewModel.backgroundColor.value = Color.Green
                                         myViewModel.playSound(Sound.SWIPE_RIGHT)
+                                        myViewModel.swipeDirection.value = "RIGHT"
                                     } else {
                                         // Swipe Left
                                         myViewModel.backgroundColor.value  = Color.Red
                                         myViewModel.playSound(Sound.SWIPE_LEFT)
+                                        myViewModel.swipeDirection.value = "LEFT"
                                     }
                                 } else {
                                     // Vertical swipe
@@ -101,16 +104,24 @@ fun SwipeDetector(myViewModel: MyViewModel = viewModel()) {
                                         // Swipe Down
                                         myViewModel.backgroundColor.value  = Color.Blue
                                         myViewModel.playSound(Sound.SWIPE_DOWN)
+                                        myViewModel.swipeDirection.value = "DOWN"
                                     } else {
                                         // Swipe Up
                                         myViewModel.backgroundColor.value  = Color.Yellow
                                         myViewModel.playSound(Sound.SWIPE_UP)
+                                        myViewModel.swipeDirection.value = "UP"
                                     }
                                 }
                             }
                         }
                     }
                 }
-        )
+        ){
+            Text(
+                text = "Last swipe direction: ${myViewModel.swipeDirection.value}",
+                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                modifier = Modifier.align(Alignment.Center)
+            )
+        }
     }
 }
